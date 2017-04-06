@@ -17,8 +17,12 @@ void draw(){
   c.moveL();
   C.moveR();
   v.moveL();
- intersects(Car c);
- 
+ intersects(c);
+ intersects(C);
+ intersects(v);
+ if( intersects(c) == true|| intersects(C)==true||intersects(v)== true){
+   FY = 392;
+ }
 }
 void keyPressed()
 {
@@ -74,24 +78,17 @@ public class Car{
   }
   void moveL(){
    CX= CX-speed; 
-   if(CX<0){
+   if(CX+size<0){
     CX= 400 ;
    }
   }
   void moveR(){
    CX= CX+speed; 
    if(CX>400){
-    CX= 0 ;
+    CX= -size ;
    }
   }
-  boolean intersects(Car car) {
-if ((FY > car.getY() && FY < car.getY()+50) && (FX > car.getX() && FX < car.getX()+car.getSize())){
-          return true;
-}
-    else {
-        return false;
-    }
-}
+
 
   int getX(){
     return CX;
@@ -109,4 +106,11 @@ if ((FY > car.getY() && FY < car.getY()+50) && (FX > car.getX() && FX < car.getX
   }
 
 }
-
+  boolean intersects(Car car) {
+if ((FY > car.getY() && FY < car.getY()+15) && (FX > car.getX() && FX < car.getX()+car.getSize())){
+          return true;
+}
+    else {
+        return false;
+    }
+}
